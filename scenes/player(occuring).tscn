@@ -1,0 +1,158 @@
+[gd_scene load_steps=13 format=3 uid="uid://71l6jutpqlyr"]
+
+[ext_resource type="Script" path="res://scripts/player(occuring).gd" id="1_50v1i"]
+[ext_resource type="PackedScene" uid="uid://bgn177hwk7pko" path="res://addons/fps-controller/imported exported files/swordd.gltf" id="1_ml07c"]
+[ext_resource type="Script" path="res://scripts/sword_ability.gd" id="2_c2ttg"]
+[ext_resource type="AudioStream" uid="uid://beivmb1t5wk5v" path="res://sfx/swords swing.mp3" id="4_7bkfn"]
+[ext_resource type="AudioStream" uid="uid://bf3srcfquy6k1" path="res://sfx/first footstep.mp3" id="5_suv4m"]
+[ext_resource type="AudioStream" uid="uid://cdkvn0a7px75r" path="res://sfx/second footstep.mp3" id="6_rqcvu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rjiia"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_acb3j"]
+height = 5.20052
+
+[sub_resource type="Animation" id="Animation_nqk4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.268404, 2.90071, -0.0650524)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.555977, -0.335106, -0.799912)]
+}
+
+[sub_resource type="Animation" id="Animation_pidju"]
+resource_name = "sword_test1"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.268404, 2.90071, -0.0650524), Vector3(0.268404, 2.90071, -0.0650524), Vector3(1.31757, 1.97831, -1.15136), Vector3(1.09309, 0.523963, -2.66748), Vector3(0.268404, 2.90071, -0.0650524)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.555977, -0.335106, -0.799912), Vector3(0.555977, -0.335106, -1.79991), Vector3(0.555977, -1.33511, -1.54991), Vector3(0.555977, -0.335106, -0.799912)]
+}
+
+[sub_resource type="Animation" id="Animation_frgbh"]
+resource_name = "sword_test2"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.268404, 2.90071, -0.0650524), Vector3(-0.055579, 2.78705, -1.03764), Vector3(-0.316409, 3.02352, -1.00701), Vector3(0.172693, 1.20498, -1.19634), Vector3(0.268404, 2.90071, -0.0650524)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.555977, -0.335106, -0.799912), Vector3(0.398696, -0.142873, -0.799912), Vector3(0.398696, -0.226229, -0.799912), Vector3(0.398696, 0.260949, -0.799912), Vector3(0.555977, -0.335106, -0.799912)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fhqxd"]
+_data = {
+"RESET": SubResource("Animation_nqk4j"),
+"sword_test1": SubResource("Animation_pidju"),
+"sword_test2": SubResource("Animation_frgbh")
+}
+
+[node name="Player(Occuring)" type="CharacterBody3D"]
+script = ExtResource("1_50v1i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_rjiia")
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="optics" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600403, 0)
+
+[node name="swordd" parent="Head" instance=ExtResource("1_ml07c")]
+transform = Transform3D(-0.368241, 3.43942e-07, 0.0870358, -0.0237169, 0.364067, -0.100345, -0.0837422, -0.10311, -0.354305, 0.555977, -0.335106, -0.799912)
+script = ExtResource("2_c2ttg")
+_active = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Head/swordd"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/swordd/StaticBody3D"]
+transform = Transform3D(1, 7.45058e-09, 1.49012e-08, -3.72529e-09, 1, 2.98023e-08, -2.98023e-08, 0, 1, -4.05908e-05, 2.25514, -0.000171185)
+shape = SubResource("CapsuleShape3D_acb3j")
+
+[node name="SWORD_ANIM" type="AnimationPlayer" parent="Head/swordd"]
+libraries = {
+"": SubResource("AnimationLibrary_fhqxd")
+}
+speed_scale = 0.5
+
+[node name="light" type="SpotLight3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.604352, 0)
+light_color = Color(0, 0, 1, 1)
+spot_range = 3.0
+spot_angle = 11.6412
+
+[node name="sword sfx" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.567452, -0.114282, -1.03786)
+stream = ExtResource("4_7bkfn")
+
+[node name="feets" type="Node3D" parent="."]
+
+[node name="footsteps" type="AudioStreamPlayer3D" parent="feets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.915498, 0)
+stream = ExtResource("5_suv4m")
+
+[node name="footsteps2" type="AudioStreamPlayer3D" parent="feets"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.915498, 0)
+stream = ExtResource("6_rqcvu")
+area_mask = 3
+
+[node name="floor detector" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.02414, 0)
+collision_mask = 2
+collide_with_areas = true

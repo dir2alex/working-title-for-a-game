@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://beivmb1t5wk5v"
+path="res://.godot/imported/swords swing.mp3-b9e48ee9e67e231460bee9697a8d738a.mp3str"
+
+[deps]
+
+source_file="res://sfx/swords swing.mp3"
+dest_files=["res://.godot/imported/swords swing.mp3-b9e48ee9e67e231460bee9697a8d738a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

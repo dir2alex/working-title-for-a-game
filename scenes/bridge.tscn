@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2rbij0ddpuj7"]
+
+[ext_resource type="PackedScene" uid="uid://1dj4ucyggev8" path="res://addons/character-controller/imported exported files/bridge.gltf" id="1_7sgok"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ktxl1"]
+points = PackedVector3Array(17, 1, 1, 17, -1, 1, 17, 1, -1, -1, 1, 1, 17, -1, -1, -1, -1, 1, -1, 1, -1, -1, -1, -1)
+
+[node name="bridge" instance=ExtResource("1_7sgok")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_001/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_ktxl1")
