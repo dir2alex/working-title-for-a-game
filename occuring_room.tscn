@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://7fwetdo33y41"]
+
+[ext_resource type="PackedScene" uid="uid://hesp0hjkdtqn" path="res://scenes/room_furnitures.tscn" id="1_a5203"]
+[ext_resource type="Script" path="res://addons/fps-controller/example/main/level.gd" id="1_q7r7w"]
+[ext_resource type="PackedScene" uid="uid://71l6jutpqlyr" path="res://scenes/player(occuring).tscn" id="2_jg2qo"]
+
+[node name="Room" type="Node3D"]
+script = ExtResource("1_q7r7w")
+
+[node name="room_sofa" parent="." instance=ExtResource("1_a5203")]
+
+[node name="Player(Occuring)" parent="." instance=ExtResource("2_jg2qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.16827, 0)

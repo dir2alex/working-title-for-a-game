@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://bifpfawuxsftd"]
+
+[ext_resource type="Script" path="res://addons/character-controller/example/main/level.gd" id="1_do3u0"]
+[ext_resource type="PackedScene" uid="uid://c2rbij0ddpuj7" path="res://scenes/bridge.tscn" id="4_j1u6k"]
+[ext_resource type="PackedScene" uid="uid://c1h5cs5r7riae" path="res://scenes/water.tscn" id="5_c6jcm"]
+[ext_resource type="PackedScene" uid="uid://2oxdgu03lnbk" path="res://addons/character-controller/example/main/player.tscn" id="5_nhhu3"]
+[ext_resource type="PackedScene" uid="uid://dkbu1tmtk8oxp" path="res://scenes/streetlamps.tscn" id="6_gd0ll"]
+[ext_resource type="PackedScene" uid="uid://cy2gqcgvxewsn" path="res://scenes/drone_lfrb.tscn" id="7_m5ax1"]
+[ext_resource type="Texture2D" uid="uid://svijnbaaeuol" path="res://addons/character-controller/example/main/textures/Free DEMO Pixel Skies Background pack by Digital Moons/demo01_PixelSky.png" id="12_sdrck"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_l566q"]
+panorama = ExtResource("12_sdrck")
+filter = false
+
+[sub_resource type="Sky" id="Sky_t5ash"]
+sky_material = SubResource("PanoramaSkyMaterial_l566q")
+radiance_size = 0
+
+[sub_resource type="Environment" id="Environment_7ofk6"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_t5ash")
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_1buvy"]
+vertices = PackedVector3Array(-0.25, 1, 8.07916, 0.75, 1, 7.82916, 0.75, 1, 6.32916, 1.5, 1, 6.07916, 1.5, 1, -2.17084, -12, 1, -2.17084, -12, 1, 11.3292, -0.75, 1, 11.3292, 2.25, 1, 6.32916, 2.25, 1, 7.82916, 3, 1, 8.07916, 3, 1, 9.82916, 3.75, 1, 10.0792, 12, 1, 10.8292, 3.75, 1, 10.8292, 12, 1, -2.17084, 1, 4, 10.0792, 2, 4, 10.0792, 2, 4.25, 8.82916, 0.75, 4.25, 8.82916, 3.75, 1, 11.5792, 3, 1, 11.8292, 2, 1, 13.3292, 0.5, 1, 21.8292, 12, 1, 21.8292, 0.5, 1, 13.5792, -0.75, 1, 13.0792, -12, 1, 21.8292)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(5, 0, 6), PackedInt32Array(0, 7, 6), PackedInt32Array(9, 8, 10), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 14, 12), PackedInt32Array(8, 3, 4), PackedInt32Array(8, 4, 10), PackedInt32Array(10, 4, 15), PackedInt32Array(10, 15, 13), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 13), PackedInt32Array(22, 13, 24), PackedInt32Array(22, 24, 23), PackedInt32Array(20, 14, 13), PackedInt32Array(23, 25, 22), PackedInt32Array(25, 23, 26), PackedInt32Array(26, 23, 27), PackedInt32Array(26, 27, 6), PackedInt32Array(6, 7, 26)]
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_do3u0")
+
+[node name="Player" parent="." instance=ExtResource("5_nhhu3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.38061, 14.6006, 14.4567)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Head/FirstPersonCameraReference" index="0"]
+
+[node name="swordd" parent="Player" index="10"]
+transform = Transform3D(-0.368241, 3.43942e-07, 0.0870358, -0.0237169, 0.364067, -0.100345, -0.0837422, -0.10311, -0.354305, 0.555977, -0.335106, -0.799912)
+
+[node name="Lighting" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = SubResource("Environment_7ofk6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75, -0.433013, 0, 5, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 250.0
+
+[node name="water" parent="." instance=ExtResource("5_c6jcm")]
+visible = false
+
+[node name="bridge" parent="." instance=ExtResource("4_j1u6k")]
+
+[node name="streetlamps" parent="." instance=ExtResource("6_gd0ll")]
+
+[node name="AreaOfDetection" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_1buvy")
+
+[node name="Drone LFRB" parent="AreaOfDetection" instance=ExtResource("7_m5ax1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.67362, 12.2223)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="AreaOfDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.82916)
+use_collision = true
+collision_mask = 2
+size = Vector3(25, 1, 25)
+
+[editable path="Player"]

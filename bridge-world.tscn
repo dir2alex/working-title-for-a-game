@@ -1,0 +1,191 @@
+[gd_scene load_steps=11 format=3 uid="uid://bifpfawuxsftd"]
+
+[ext_resource type="Script" path="res://addons/fps-controller/example/main/level.gd" id="1_do3u0"]
+[ext_resource type="Texture2D" uid="uid://b1p4oxh1ilfvg" path="res://img/dark blu sky CRUNCH.png" id="2_2o4uh"]
+[ext_resource type="PackedScene" uid="uid://c2rbij0ddpuj7" path="res://scenes/bridge.tscn" id="4_j1u6k"]
+[ext_resource type="PackedScene" uid="uid://c1h5cs5r7riae" path="res://scenes/water.tscn" id="5_c6jcm"]
+[ext_resource type="PackedScene" uid="uid://dkbu1tmtk8oxp" path="res://scenes/streetlamps.tscn" id="6_gd0ll"]
+[ext_resource type="PackedScene" uid="uid://71l6jutpqlyr" path="res://scenes/player(occuring).tscn" id="7_gn66q"]
+[ext_resource type="PackedScene" uid="uid://cy2gqcgvxewsn" path="res://scenes/drone_lfrb.tscn" id="7_m5ax1"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_l566q"]
+panorama = ExtResource("2_2o4uh")
+filter = false
+
+[sub_resource type="Sky" id="Sky_t5ash"]
+sky_material = SubResource("PanoramaSkyMaterial_l566q")
+radiance_size = 0
+
+[sub_resource type="Environment" id="Environment_7ofk6"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_t5ash")
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_do3u0")
+
+[node name="Lighting" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = SubResource("Environment_7ofk6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 58.1015, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 250.0
+
+[node name="water" parent="." groups=["organicfloor"] instance=ExtResource("5_c6jcm")]
+
+[node name="Cube" parent="water" index="0" groups=["organicfloor"]]
+layers = 3
+
+[node name="StaticBody3D" parent="water/Cube" index="0" groups=["organicfloor"]]
+
+[node name="CollisionShape3D" parent="water/Cube/StaticBody3D" index="0" groups=["organicfloor"]]
+
+[node name="bridge" parent="." groups=["hardfloor"] instance=ExtResource("4_j1u6k")]
+
+[node name="Cube_001" parent="bridge" index="0" groups=["hardfloor"]]
+layers = 3
+
+[node name="StaticBody3D" parent="bridge/Cube_001" index="0" groups=["hardfloor"]]
+
+[node name="CollisionShape3D" parent="bridge/Cube_001/StaticBody3D" index="0" groups=["hardfloor"]]
+
+[node name="streetlamps" parent="." instance=ExtResource("6_gd0ll")]
+
+[node name="streetlamps2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.775464, 0)
+
+[node name="lamp1" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.68444, 11.26, -0.955701)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp2" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.05767, 11.26, -0.955701)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp3" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -8.77032, 11.26, -0.955701)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp4" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -14.5432, 11.26, -0.955701)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp5" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.1081, 11.26, -0.955701)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp6" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -25.9193, 11.26, -0.955701)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp7" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8.42654, 11.26, -0.955701)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp8" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 14.1264, 11.26, -0.955701)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp9" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 19.8052, 11.26, -0.955701)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp10" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 25.5895, 11.26, -0.955701)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp11" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.68444, 11.26, 1.51425)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp12" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3.05767, 11.26, 1.51425)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp13" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -8.77032, 11.26, 1.51425)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp14" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -14.5432, 11.26, 1.51425)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp15" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -20.1081, 11.26, 1.51425)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp16" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -25.9193, 11.26, 1.51425)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp17" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8.42654, 11.26, 1.51425)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp18" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 14.1264, 11.26, 1.51425)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp19" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 19.8052, 11.26, 1.51425)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="lamp20" type="SpotLight3D" parent="streetlamps2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 25.5895, 11.26, 1.51425)
+distance_fade_enabled = true
+spot_range = 5.86362
+spot_angle = 27.7635
+
+[node name="Drone LFRB" parent="." instance=ExtResource("7_m5ax1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.67362, 12.2223)
+
+[node name="Player(Occuring)" parent="." instance=ExtResource("7_gn66q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.16827, 0)
+
+[editable path="water"]
+[editable path="bridge"]
